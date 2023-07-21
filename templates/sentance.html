@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>EDIT DISTANCE ALGORITHM</title>
+
+
+    <style media="screen">
+    * {
+      outline:none;
+      border:none;
+      margin:0px;
+      padding:0px;
+      font-family:Courier, monospace;
+    }
+    body {
+      background:#333 url('https://static.tumblr.com/maopbtg/a5emgtoju/inflicted.png') repeat;
+    }
+    #paper {
+      color:#FFF;
+      font-size:20px;
+    }
+    #margin {
+      margin-left:12px;
+      margin-bottom:20px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+    }
+    #text , #suggestedWords {
+      width:500px;
+      overflow:hidden;
+      background-color:#FFF;
+      color:#222;
+      font-family:Courier, monospace;
+      font-weight:normal;
+      font-size:24px;
+      resize:none;
+      line-height:40px;
+      padding-left:100px;
+      padding-right:100px;
+      padding-top:45px;
+      padding-bottom:34px;
+      background-image:url('https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png'), url('https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png');
+      background-repeat:repeat-y, repeat;
+      -webkit-border-radius:12px;
+      border-radius:12px;
+      -webkit-box-shadow: 0px 2px 14px #000;
+      box-shadow: 0px 2px 14px #000;
+      border-top:1px solid #FFF;
+      border-bottom:1px solid #FFF;
+    }
+
+    #button {
+      cursor:pointer;
+      margin-top:20px;
+      float:right;
+      height:40px;
+      padding-left:24px;
+      padding-right:24px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-weight:bold;
+      font-size:20px;
+      color:#FFF;
+      text-shadow: 0px -1px 0px #000000;
+      -webkit-border-radius:8px;
+      border-radius:8px;
+      border-top:1px solid #FFF;
+      -webkit-box-shadow: 0px 2px 14px #000;
+      box-shadow: 0px 2px 14px #000;
+      background-color: #62add6;
+      background-image:url(https://static.tumblr.com/maopbtg/ZHLmgtok7/button.png);
+      background-repeat:repeat-x;
+    }
+    #button:active {
+      zoom: 1;
+      filter: alpha(opacity=80);
+      opacity: 0.8;
+    }
+    #button:focus {
+      zoom: 1;
+      filter: alpha(opacity=80);
+      opacity: 0.8;
+    }
+    #wrapper {
+      width:700px;
+      height:auto;
+      margin-left:auto;
+      margin-right:auto;
+      margin-top:24px;
+      margin-bottom:100px;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+
+	<form id="paper" method="get" action="">
+
+
+		<textarea placeholder="Enter something." id="text" name="text" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>
+		<br>
+		<input id="button" type="button" value="Create" onclick="suggestWords()">
+
+	</form>
+  <br><br><br><br> <br> <br>
+   	<textarea placeholder="Rectified sentance" id="suggestedWords" name="text" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>
+
+</div>
+ <script type="text/javascript">
+
+
+   function calculateEditDistance(word1, word2) {
+
+     var m = word1.length;
+     var n = word2.length;
+
+     var dp = [];
+     for (var i = 0; i <= m; i++) {
+       dp[i] = [];
+       for (var j = 0; j <= n; j++) {
+         if (i === 0) {
+           dp[i][j] = j;
+         } else if (j === 0) {
+           dp[i][j] = i;
+         } else if (word1[i - 1] === word2[j - 1]) {
+           dp[i][j] = dp[i - 1][j - 1];
+         } else {
+           dp[i][j] = 1 + Math.min(
+             dp[i][j - 1], // Insert
+             dp[i - 1][j], // Delete
+             dp[i - 1][j - 1] // Substitute
+           );
+         }
+       }
+     }
+
+     return dp[m][n];
+   }
+
+ function suggestWords() {
+   alert("called")
+   var inputWord = document.getElementById("text").value;
+   var suggestedWords = document.getElementById("suggestedWords");
+   suggestedWords.textContent = ""; // Clear previous suggestions
+
+   fetch('/dictionary')
+     .then(response => response.text())
+     .then(data => {
+       var dictionary = data.split('\n');
+       var inputWords = inputWord.split(/\s+/);
+       for (var j = 0; j < inputWords.length; j++) {
+         // Rest of the code for the suggestWords function...
+        
+         for (var i = 0; i < dictionary.length; i++) {
+           var word = dictionary[i];
+           var editDistance = calculateEditDistance(inputWords[j], word);
+           // Display words with edit distance <= 2
+           if (editDistance <= 2) {
+             suggestedWords.textContent+=word +' ';
+             alert(word)
+           }
+         }
+       }
+     });
+ }
+
+ </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
+  </body>
+</html>

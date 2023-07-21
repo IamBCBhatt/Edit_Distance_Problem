@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADVANCED_ALGORITHM_EL</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <style>
+        body {
+    padding-top: 10px;
+}
+
+.content {
+    /* Adjust as needed */
+    background-color: #f5f5f5; /* Placeholder background color for content area */
+    height:800px;
+
+
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.explanation {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align:justify;
+    color: #333;
+    display: inline-block;
+    position:relative;
+    bottom:250px;
+    left:70px;
+}
+.applications{
+  color:white;
+  font-weight:bolder;
+  font-size: 20px;
+  text-align: center;
+  width:80%;
+  position:relative;
+  left:50px;
+  bottom:200px;
+}
+.app1:hover{
+  background: #FF5733;
+}
+.app2:hover{
+  background: #FF5733;
+}
+.app1{
+  display:inline-block;
+  height:200px;
+  width:300px;
+  padding:40px;
+  background: #FFC300;
+  border-radius:20px;
+
+}
+.app2{
+    display:inline-block;
+  width:300px;
+  height:200px;
+  padding:40px;
+  background: #335C67;
+  border-radius:20px;
+  position:relative;
+  left:100px;
+}
+img{
+  position:relative;
+  right:350px;
+  width:400px;
+  height:300px;
+  display: inline-block;
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">ADVANCED ALGO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content">
+      <div class="container">
+        <img src="https://th.bing.com/th/id/R.c61bda216793d5b814f916a3b3887deb?rik=kEImGj6v80cUJw&riu=http%3a%2f%2fmathjam.org%2fimg%2flaptop.png&ehk=kJbMvoIezQyWWCdl1dj1MjMilMamRO3iNcu2%2fHFtTHQ%3d&risl=&pid=ImgRaw&r=0" alt="">
+      <div class="explanation">
+
+         <h1>Edit Distance Problem</h1>
+         <p style="display:inline;">
+             The edit distance problem, also known as the Levenshtein distance, is a measure of the similarity between two strings.
+             It represents the minimum number of operations required to transform one string into another, where an operation can
+             be an insertion, deletion, or substitution of a single character.<br>
+             <b>Here I have made an attempt to use it in two of our most used applications- the spelling corrector and plagarism checker. Thank you</b>
+         </p>
+     </div>
+  </div>
+  <div class="applications">
+  <div class="app1" onclick="goToPlagiarismChecker()">
+      <p>Try out plagarism checker <br>using edit distance </p>
+  </div>
+  <div class="app2" onclick="goToSentanceChecker()">
+       <p>Try out the auto corrector <br>that uses edit distance </p>
+  </div>
+    </div>
+    </div>
+    <script>
+       function goToPlagiarismChecker() {
+           window.location.href = "/plagiarism-checker";  // Replace "/plagiarism-checker" with the desired URL or route
+       }
+       function goToSentanceChecker() {
+           window.location.href = "/sentance-correct";  // Replace "/plagiarism-checker" with the desired URL or route
+       }
+   </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
